@@ -1,2 +1,1 @@
-# vue-editor
-vue可视化编辑器
+vue 编辑器
