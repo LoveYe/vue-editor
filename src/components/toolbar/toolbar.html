@@ -1,0 +1,66 @@
+<div class="toolbar" @mousedown.stop>
+    <div class="toolbar-wh-row">
+        <p class="toolbar-row-title">Position</p>
+        <span class="toolbar-position-inp">top
+            <input :value="top" @keyup="changeTop" />
+
+        </span>
+        <span class="toolbar-position-inp">left
+            <input :value="left" @keyup="changeLeft" />
+         
+        </span>
+    </div>
+    <div class="toolbar-wh-row">
+        <p class="toolbar-row-title">Size</p>
+        <span class="toolbar-size-inp">width
+            <input :value="width" @keyup="changeWidth" />
+          
+        </span>
+        <span class="toolbar-size-inp">height
+            <input :value="height" @keyup="changeHeight" />
+        </span>
+    </div>
+
+    <div class="toolbar-wh-row">
+        <p class="toolbar-row-title">Minimal size</p>
+        <span class="toolbar-size-inp">width
+            <input :value="minw" :disabled="activeRect === null" @keyup="changeMinWidth" />
+        </span>
+        <span class="toolbar-size-inp">height
+            <input :value="minh" :disabled="activeRect === null" @keyup="changeMinHeight" />
+        </span>
+    </div>
+
+    <div v-if="useType=='文字' || useType=='日期'">
+        <div class="toolbar-wh-row">
+            <p class="toolbar-row-title">text</p>
+            <span class="toolbar-size-inp">text
+                <input :disabled="activeRect === null" :value="useText" @keyup="changeText"  style="width:150px" />
+            </span>
+        </div>
+    
+        <div class="toolbar-wh-row">
+            <div class="toolbar-size-inp">字体颜色</div>
+            <colorPicker :disabled="activeRect === null"   :value="useColor" v-on:change="changeColor"></colorPicker>
+            <!-- <el-color-picker  @active-change=''></el-color-picker> -->
+          </div>
+    
+          <div class="toolbar-wh-row">
+            <div class="toolbar-size-inp">背景色</div>
+            <colorPicker :disabled="activeRect === null"   :value="useBackGroundColor" v-on:change="changebackGroundColor"></colorPicker>
+        </div>
+    </div>
+    
+
+    <div class="toolbar-wh-row" >
+        <!-- <p class="toolbar-row-title">Restrictions</p>
+        <label class="toolbar-check-inp"><input type="checkbox" @change="toggleResizable" :checked="resizable" :disabled="activeRect === null" /> isResizable</label>
+        <label class="toolbar-check-inp"><input type="checkbox" @change="toggleDraggable" :checked="draggable" :disabled="activeRect === null" /> isDraggable</label>
+        <label class="toolbar-check-inp"><input type="checkbox" @change="toggleSnapToGrid" :checked="snapToGrid" :disabled="activeRect === null" /> snapToGrid</label>
+        <label class="toolbar-check-inp"><input type="checkbox" @change="toggleParentLimitation" :checked="parentLim" :disabled="activeRect === null" /> parentLimitation</label>
+             -->
+        <el-button :disabled="activeRect === null" class="el-icon-delete" name="toDelete" :color="activeRect!==null && zIndex !== 'isFirst' ? '#fff' : '#AAA'"  @click.native="toDelete" type='primary' round></el-button>
+        <el-button :disabled="activeRect === null" class="el-icon-bottom" name="toBottom" :color="activeRect!==null && zIndex !== 'isFirst' ? '#fff' : '#AAA'"  @click.native="toBottom" type='primary' round></el-button>
+        <el-button :disabled="activeRect === null" class="el-icon-top" name="toTop" :color="activeRect!==null && zIndex !== 'isLast' ? '#fff' : '#AAA'"  @click.native="toTop" type='primary' round></el-button>
+    </div>
+</div>
